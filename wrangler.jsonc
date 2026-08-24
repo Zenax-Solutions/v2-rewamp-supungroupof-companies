@@ -1,12 +1,28 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "v2-rewamp-supungroupof-companies",
+  "main": "server/worker.ts",
   "compatibility_date": "2026-08-20",
+  "compatibility_flags": ["nodejs_compat"],
   "observability": {
     "enabled": true
   },
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "not_found_handling": "single-page-application"
-  }
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "supun-group-db",
+      "database_id": "supun-group-db-local"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "UPLOADS_BUCKET",
+      "bucket_name": "supun-group-uploads"
+    }
+  ]
 }
