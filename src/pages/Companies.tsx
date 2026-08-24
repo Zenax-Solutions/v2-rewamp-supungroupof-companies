@@ -133,12 +133,12 @@ const Companies = () => {
       <section className="w-full py-20 sm:py-28 bg-slate-50 border-b border-gray-200">
         <div className="max-w-[1600px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-20">
           {/* Sector Filter Tabs */}
-          <div className="flex items-center gap-3 overflow-x-auto pb-4 mb-14 border-b border-gray-200">
+          <div className="flex items-center gap-2.5 sm:gap-3 overflow-x-auto pb-4 mb-10 sm:mb-14 border-b border-gray-200">
             {sectors.map((sector) => (
               <button
                 key={sector}
                 onClick={() => setSelectedSector(sector)}
-                className={`px-8 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                className={`px-5 sm:px-8 py-2.5 sm:py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                   selectedSector === sector
                     ? "bg-[#1d3f9a] text-white shadow-lg"
                     : "bg-white text-gray-700 hover:bg-gray-100 border border-gray-200"
@@ -150,7 +150,7 @@ const Companies = () => {
           </div>
 
           {/* Companies Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 xl:gap-10">
             {filteredCompanies.map((company, index) => {
               const features = Array.isArray(company.features)
                 ? company.features
@@ -163,7 +163,7 @@ const Companies = () => {
               return (
                 <div
                   key={company.id}
-                  className="bg-white p-8 sm:p-9 border border-gray-200 shadow-sm flex flex-col justify-between hover:border-[#1d3f9a] hover:shadow-xl transition-all duration-300 group"
+                  className="bg-white p-6 sm:p-8 md:p-9 border border-gray-200 shadow-sm flex flex-col justify-between hover:border-[#1d3f9a] hover:shadow-xl transition-all duration-300 group overflow-hidden"
                 >
                   <div className="space-y-6">
                     {/* Header Bar */}
@@ -177,16 +177,16 @@ const Companies = () => {
                     </div>
 
                     {/* Prominent Large Logo Box */}
-                    <div className="flex items-center gap-5 pt-1">
-                      <div className="w-18 h-18 sm:w-20 sm:h-20 bg-slate-50 border border-gray-200 p-2.5 flex items-center justify-center shrink-0 group-hover:border-[#1d3f9a]/40 transition-colors shadow-xs">
+                    <div className="flex items-center gap-4 sm:gap-5 pt-1 min-w-0">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-slate-50 border border-gray-200 p-2 sm:p-2.5 flex items-center justify-center shrink-0 group-hover:border-[#1d3f9a]/40 transition-colors shadow-xs overflow-hidden">
                         <img
                           src={logo}
                           alt={company.name}
-                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                          className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-300"
                         />
                       </div>
-                      <div className="min-w-0 space-y-1">
-                        <h3 className="text-2xl font-bold tracking-tight text-gray-950 font-heading group-hover:text-[#1d3f9a] transition-colors leading-tight">
+                      <div className="min-w-0 flex-1 space-y-1">
+                        <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-gray-950 font-heading group-hover:text-[#1d3f9a] transition-colors leading-tight">
                           {company.shortName || company.name}
                         </h3>
                         <p className="text-xs text-gray-500 font-semibold truncate">
