@@ -1,0 +1,29 @@
+# Supun Group of Companies - Robots.txtUser-agent: Googlebot
+
+# Allow all crawlersAllow: /
+
+
+
+User-agent: *User-agent: Bingbot
+
+Allow: /Allow: /
+
+
+
+# Disallow admin panelUser-agent: Twitterbot
+
+Disallow: /adminAllow: /
+
+Disallow: /admin/*
+
+User-agent: facebookexternalhit
+
+# Sitemap locationAllow: /
+
+Sitemap: https://supuncompanies.com/sitemap.xml
+
+User-agent: *
+
+# Crawl delay (optional, in seconds)Allow: /
+
+Crawl-delay: 1
