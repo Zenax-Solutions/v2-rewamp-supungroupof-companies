@@ -69,21 +69,23 @@ app.get("/uploads/:filename", async (c) => {
   const filename = c.req.param("filename");
   const bucket = c.env.UPLOADS_BUCKET;
 
-  if (!bucket) {
-    return c.text("Storage bucket not bound", 404);
+  if (bucket) {
+    const object = await bucket.get(filename);
+    if (object) {
+      const headers = new Headers();
+      object.writeHttpMetadata(headers);
+      headers.set("etag", object.httpEtag);
+      headers.set("Cache-Control", "public, max-age=31536000, immutable");
+      return new Response(object.body, { headers });
+    }
   }
 
-  const object = await bucket.get(filename);
-  if (!object) {
-    return c.text("File not found", 404);
+  // Fallback to static asset in dist/uploads/
+  if (c.env.ASSETS) {
+    return c.env.ASSETS.fetch(c.req.raw);
   }
 
-  const headers = new Headers();
-  object.writeHttpMetadata(headers);
-  headers.set("etag", object.httpEtag);
-  headers.set("Cache-Control", "public, max-age=31536000, immutable");
-
-  return new Response(object.body, { headers });
+  return c.text("File not found", 404);
 });
 
 // ==========================================

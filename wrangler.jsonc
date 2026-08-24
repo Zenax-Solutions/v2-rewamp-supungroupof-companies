@@ -18,11 +18,5 @@
       "database_name": "supun-group-db",
       "database_id": "supun-group-db-local"
     }
-  ],
-  "r2_buckets": [
-    {
-      "binding": "UPLOADS_BUCKET",
-      "bucket_name": "supun-group-uploads"
-    }
   ]
 }
